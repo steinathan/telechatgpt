@@ -14,7 +14,8 @@ var (
 )
 
 type Message struct {
-	*gorm.Model
+	gorm.Model
+	ID      uint   `gorm:"primaryKey" json:"id"`
 	ChatID  string `json:"chatId,omitempty"`  // telegrams conversation id
 	Role    string `json:"role,omitempty"`    // chatgpt role
 	Content string `json:"content,omitempty"` // message content
@@ -41,8 +42,8 @@ func ConnectDB() error {
 }
 
 // FindMessages finds the prevous users conversations from the telegrams conversation id
-func FindMessages(chatId string) ([]*Message, error) {
-	var messages []*Message
+func FindMessages(chatId string) ([]Message, error) {
+	var messages []Message
 
 	err := DB.Where(&Message{
 		ChatID: chatId,
@@ -54,17 +55,10 @@ func FindMessages(chatId string) ([]*Message, error) {
 	return messages, nil
 }
 
-// CreateMessage creates a chat for the user for a role
+// CreateMessage creates a new chat
 func CreateMessage(msg Message) (*Message, error) {
-	newMessage := Message{
-		ChatID:  msg.ChatID,
-		Role:    msg.Role,
-		Content: msg.Content,
-	}
-
-	if err := DB.Create(&newMessage).Error; err != nil {
+	if err := DB.Create(&msg).Error; err != nil {
 		return nil, err
 	}
-
-	return &newMessage, nil
+	return &msg, nil
 }

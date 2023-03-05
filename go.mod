@@ -1,4 +1,4 @@
-module github.com/navicstein/telegramgpt
+module github.com/navicstein/telechatgpt
 
 go 1.18
 
