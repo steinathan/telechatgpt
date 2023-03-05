@@ -2,10 +2,6 @@
 
 This is a Telegram bot created with ChatGPT and Golang. The bot uses OpenAI's GPT-3 language model to generate responses to user messages in real-time.
 
-
-## Example chat conversation
-![Example Image](./screenshots/scrnsht1.png "An example conversation")
-
 ## Prerequisites
 To build and run this application, you'll need to have the following software installed on your system:
 
@@ -35,6 +31,9 @@ $ mv prompt.example.txt prompt.txt
 ```
 the prompt helps you customize how the bot will react to messages
 
+
+## Example chat conversation
+![Example Image](./screenshots/scrnsht1.png "An example conversation")
 
 ## Installing
 First, clone this repository to your local machine:
